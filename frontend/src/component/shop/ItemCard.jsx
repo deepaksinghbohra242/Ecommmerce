@@ -9,14 +9,15 @@ const ItemCard = ({
   description,
   img_path,
 }) => {
+  const imageUrl = `http://localhost:3000/${img_path}`;
   return (
-    <div className="flex justify-between p-1 gap-5 bg-gradient-to-rp-3 rounded-2xl shadow-lg">
+    <div className="flex justify-between w-full gap-5 bg-gradient-to-rp-3 rounded-2xl shadow-lg mb-8">
       <div className="flex gap-5 h-64 capitalize rounded-2xl">
         <div className="relative h-35">
           <img
-            src={img_path}
+            src={imageUrl}
             alt={`Item - ${itemName}`}
-            className="object-cover mb-4 w-45 h-full rounded"
+            className="object-cover mb-4 w-64 h-full rounded"
           />
           <div className="absolute inset-0 bg-black opacity-40 rounded"></div>
         </div>

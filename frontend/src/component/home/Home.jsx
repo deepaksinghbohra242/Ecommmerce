@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 import CartImg from "../../assets/Vector (2).png";
-import Logo from "../../assets/pahadi haat logo.png";
+
+import Logo from "../../assets/logo_web.png";
 import HeroImg from "../../assets/Untitled69_20240428152145 1.png";
 import CoupleImg from "../../assets/couple.png";
 import ArrowImg from "../../assets/Arrow 1.png";
@@ -10,7 +11,21 @@ import BaceImg2 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (2).
 import Img1 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (3).png";
 import Img2 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (5).png";
 import Img3 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (8).png";
-import Img4 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (14).png";
+import Img4 from "../../assets/medicine.png";
+import Img5 from "../../assets/saman.png";
+import Img6 from "../../assets/pen.png";
+import Img7 from "../../assets/kapde.png";
+import Img8 from "../../assets/tv.png";
+import Img9 from "../../assets/dabba.png";
+import Img10 from "../../assets/dasta.png";
+import Img11 from "../../assets/th (12) 1.png"
+
+
+
+
+
+
+
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { FaShop } from "react-icons/fa6";
@@ -147,19 +162,19 @@ const Home = () => {
           <p>Image 1 Name</p>
         </div>
         <div className="card">
-          <img src={Img2} alt="Image 1" />
+          <img src={Img5} alt="Image 1" />
           <p>Image 1 Name</p>
         </div>
         <div className="card">
-          <img src={Img2} alt="Image 1" />
+          <img src={Img6} alt="Image 1" />
           <p>Image 1 Name</p>
         </div>
         <div className="card">
-          <img src={Img2} alt="Image 1" />
+          <img src={Img7} alt="Image 1" />
           <p>Image 1 Name</p>
         </div>
         <div className="card">
-          <img src={Img2} alt="Image 1" />
+          <img src={Img8} alt="Image 1" />
           <p>Image 1 Name</p>
         </div>
         <div className="card">
@@ -180,15 +195,15 @@ const Home = () => {
           <p>Image 1 Name</p>
         </div>
         <div className="local-card">
-          <img src={Img3} alt="Image 1" />
+          <img src={Img9} alt="Image 1" />
           <p>Image 1 Name</p>
         </div>
         <div className="local-card">
-          <img src={Img3} alt="Image 1" />
+          <img src={Img10} alt="Image 1" />
           <p>Image 1 Name</p>
         </div>
         <div className="local-card">
-          <img src={Img3} alt="Image 1" />
+          <img src={Img11} alt="Image 1" />
           <p>Image 1 Name</p>
         </div>
         {/* Repeat end */}

@@ -16,6 +16,8 @@ body {
     align-items: center;
     padding: 10px 20px;
     width: 1440px; /* Set header width to 100% */
+    background: #537052;
+
 }
 
 .logo img {

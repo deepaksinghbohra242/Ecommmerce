@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3000;
 const crypto = require('crypto');
 const Shop = require('./model/Shop');
 const Item = require('./model/Item');
+const fs = require('fs');
+const { promisify } = require('util');
 
 app.use(express.json());
 app.use(cors());
@@ -96,16 +98,45 @@ app.get('/data', verifyToken, async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+const multer = require('multer');
+const path = require('path');
 
-app.post('/shop', async (req, res) => {
+// Multer configuration for handling file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads'); // Specify the directory where images will be stored
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
+
+function generateShopId() {
+    // Generate a random string as the input for hashing
+    const randomString = Math.random().toString(36).substring(2);
+    
+    // Create a hash using SHA-256
+    const hash = crypto.createHash('sha256').update(randomString).digest('hex');
+    
+    // Extract the first 6 characters of the hash
+    const shopId = hash.substring(0, 6);
+  
+    return shopId;
+  }
+  
+  app.post('/shop', upload.single('shopImage'), async (req, res) => {
     try {
         const { shopName, shopkeeperName, address } = req.body;
-        const shopId = generateShopId(); // This line is causing the error
-
+        
         // Generate unique shopId using the generateShopId function
-        const uniqueShopId = generateShopId(shopId);
+        const shopId = generateShopId();
 
-        const newShop = new Shop({ shopName, shopkeeperName, shopId: uniqueShopId, address }); // Use uniqueShopId here
+        // Get the path of the uploaded image
+        const shopImagePath = req.file.path;
+
+        const newShop = new Shop({ shopName, shopkeeperName, shopId, address, img_path: shopImagePath });
         await newShop.save();
         res.status(201).json({ message: 'Shop created successfully', shop: newShop });
     } catch (error) {
@@ -114,21 +145,68 @@ app.post('/shop', async (req, res) => {
     }
 });
 
-function generateShopId(shopId) { // Add shopId as parameter here
-    const salt = 'your_salt_here'; 
-    const hashedId = crypto.createHash('sha256').update(shopId + salt).digest('hex');
-    return hashedId.slice(0, 10);
-}
-
-app.post('/item', async (req, res) => {
+// Endpoint for creating a new item with image upload
+app.post('/item', upload.single('itemImage'), async (req, res) => {
     try {
         const { shopId, itemName, itemType, rate, brand, description } = req.body;
-        const newItem = new Item({ shopId, itemName, itemType, rate, brand, description });
+
+        // Get the path of the uploaded image
+        const itemImagePath = req.file.path;
+
+        const newItem = new Item({ shopId, itemName, itemType, rate, brand, description, img_path: itemImagePath });
         await newItem.save();
         res.status(201).json({ message: 'Item created successfully', item: newItem });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
+    }
+});
+
+
+app.get('/allItems' , async(req,res) =>{
+    try {
+        const items = await Item.find();
+        res.json(items);
+    } catch (error) {
+        res.status(500).json({message : "Server error"})
+    }
+})
+
+app.get('/allshops' , async(req, res) =>{
+    try {
+        const shops = await Shop.find();
+        res.json(shops);
+    } catch (error) {
+        res.status(500).json({message : "server Error"})    }
+})
+
+app.get('/uploads/:filename', (req, res) => {
+    const { filename } = req.params;
+    const filePath = path.join(__dirname, 'uploads', filename);
+    const stat = fs.statSync(filePath);
+    const fileSize = stat.size;
+    const range = req.headers.range;
+    if (range) {
+        const parts = range.replace(/bytes=/, "").split("-");
+        const start = parseInt(parts[0], 10);
+        const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+        const chunksize = (end - start) + 1;
+        const file = fs.createReadStream(filePath, { start, end });
+        const head = {
+            'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+            'Accept-Ranges': 'bytes',
+            'Content-Length': chunksize,
+            'Content-Type': 'image/jpeg',
+        };
+        res.writeHead(206, head);
+        file.pipe(res);
+    } else {
+        const head = {
+            'Content-Length': fileSize,
+            'Content-Type': 'image/jpeg',
+        };
+        res.writeHead(200, head);
+        fs.createReadStream(filePath).pipe(res);
     }
 });
 

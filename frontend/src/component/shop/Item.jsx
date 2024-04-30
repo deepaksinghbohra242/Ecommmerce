@@ -1,18 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
+import axios from "axios";
 
 function Item() {
+  const [items, setItems] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/allitems");
+        setItems(response.data);
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+    fetchItems();
+  }, []);
+
+  const filteredItems = items.filter((item) =>
+    item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
-      <div className="flex flex-wrap justify-center">
-        <ItemCard
-          itemName="Product 1"
-          itemType="Type 1"
-          rate="$10"
-          brand="Brand A"
-          description="Description for Product 1"
-          img_path="https://images.search.yahoo.com/images/view;_ylt=AwrOp.MFZjBm9zYPbEyJzbkF;_ylu=c2VjA3NyBHNsawNpbWcEb2lkAzA0ZWRiNjkwNWEzYzY5ZmE0YjM0NzdlNmUyOTljZTIwBGdwb3MDMTM1BGl0A2Jpbmc-?back=https%3A%2F%2Fimages.search.yahoo.com%2Fsearch%2Fimages%3Fp%3Ddefault%2Bimage%26type%3DE211US714G0%26fr%3Dmcafee%26fr2%3Dpiv-web%26nost%3D1%26tab%3Dorganic%26ri%3D135&w=640&h=640&imgurl=projectable.org%2Fwp-content%2Fuploads%2F2017%2F01%2Fdefault-avatar_male.png&rurl=https%3A%2F%2Fprojectable.org%2Fwho-we-are%2Fdefault-avatar_male%2F&size=+7.1KB&p=default+image&oid=04edb6905a3c69fa4b3477e6e299ce20&fr2=piv-web&fr=mcafee&tt=default-avatar_male+-+Project+ABLE&b=121&ni=21&no=135&ts=&tab=organic&sigr=XDqc0_HK7ZiH&sigb=bFYlmxLJNYPC&sigi=ZsAiLqf3RudM&sigt=8UquZs355aR_&.crumb=1QSXzM56b9d&fr=mcafee&fr2=piv-web&type=E211US714G0"
+      <div className="flex flex-col items-center my-4">
+        <h1 className="text-3xl font-bold mb-4">ITEMS</h1>
+        <input
+          type="text"
+          placeholder="Search items..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="px-4 py-2 border w-1/2 border-gray-200 rounded-md mb-10" 
         />
+      </div>
+      <div className="flex flex-wrap justify-center">
+        {filteredItems.map((item) => (
+          <ItemCard
+            key={item._id}
+            itemName={item.itemName}
+            itemType={item.itemType}
+            rate={item.rate}
+            brand={item.brand}
+            description={item.description}
+            img_path={item.img_path}
+          />
+        ))}
       </div>
     </>
   );
