@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {Navigate} from 'react-router-dom'
 
 const ItemForm = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,8 @@ const ItemForm = () => {
     description: '',
     itemImage: null, // Store the file object directly
   });
-
+  
+  const [redirect , setRedirect] = useState(false)
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -37,13 +39,14 @@ const ItemForm = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      setRedirect(true)
       alert('Item created successfully!');
     } catch (error) {
       console.error('Error creating item:', error);
       alert('Failed to create item. Please try again.');
     }
   };
-
+  if(redirect) return <Navigate to={'/item'} />
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="max-w-md w-full bg-white p-8 rounded shadow-md">

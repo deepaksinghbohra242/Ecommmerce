@@ -28,98 +28,15 @@ import Img11 from "../../assets/th (12) 1.png"
 
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { FcAbout } from "react-icons/fc";
 import { FaShop } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Home = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (token) {
-          const response = await axios.get("http://localhost:3000/data", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setIsAuthenticated(true);
-        } else {
-          setIsAuthenticated(false);
-        }
-      } catch (error) {
-        setIsAuthenticated(false);
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsAuthenticated(false);
-  };
-
   return (
     <div>
-      <header className="main-header">
-        <div className="logo ">
-          <img src={Logo} className="" alt="Logo" />
-        </div>
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." />
-        </div>
-        <div className="cart-icons">
-          {isAuthenticated ? (
-            <>
-              <div >
-                <Link to={"/item"}>
-                  <HiOutlineShoppingBag />
-                  <span>Item</span>
-                </Link>
-              </div>
-              <div>
-                <Link to={"/shop"}>
-                  <FaShop />
-                  <span>Shop</span>
-                </Link>
-              </div>
-              <div>
-                <CgProfile className=" size-7" />
-                <Link to={"/profile"}>
-                  <span>Profile</span>
-                </Link>
-              </div>
-              <div>
-                <img src={CartImg} alt="Logo" />
-                <span>Cart</span>
-              </div>
-              <div>
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-600 p-2 rounded-md"
-                >
-                  Logout
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <Link to={"/login"}>
-                <div className="bg-blue-600 p-2 rounded-2xl px-4">Login</div>
-              </Link>
-              <Link to={"/register"}>
-                <div className="bg-blue-600 p-2 rounded-2xl px-4">Sign Up</div>
-              </Link>
-            </>
-          )}
-        </div>
-      </header>
-
       <div className="container">
         <div className="hero">
           <div className="heading">

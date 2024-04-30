@@ -1,21 +1,18 @@
+// ProfileCard.js
 import React from 'react';
 
-const ProfileCard = () => {
+const ProfileCard = ({ name, email, phoneNumber, type, profileImage }) => {
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="profile w-full max-w-lg bg-white rounded-lg shadow-lg p-8">
-        <div className="flex">
-          <div className="profile-image w-24 h-24 rounded-full overflow-hidden mr-8">
-            <img src="images/1.jpg" alt="Profile Picture" className="w-full h-full object-cover" />
-          </div>
-          <div className="profile-details">
-            <div className="profile-item mb-4">Name: John Doe</div>
-            <div className="profile-item mb-4">Phone Number: 123-456-7890</div>
-            <div className="profile-item mb-4">Address: 123 Street, City, Country</div>
-            <div className="profile-item mb-4">Email: johndoe@example.com</div>
-          </div>
+    <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="flex items-center mb-4">
+        <img src={profileImage} alt="Profile" className="w-16 h-16 rounded-full mr-4" />
+        <div>
+          <h2 className="text-xl font-bold">{name}</h2>
+          <p className="text-gray-600">{email}</p>
         </div>
       </div>
+      <p className="text-gray-700">Phone Number: {phoneNumber}</p>
+      <p className="text-gray-700">Type: {type}</p>
     </div>
   );
 };
