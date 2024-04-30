@@ -10,6 +10,7 @@ import BaceImg2 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (2).
 import Img1 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (3).png";
 import Img2 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (5).png";
 import Img3 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (8).png";
+import Img4 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (14).png";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { FaShop } from "react-icons/fa6";
@@ -121,7 +122,7 @@ const Home = () => {
       </div>
 
       <div className="deals_section">
-        <span>Exclusive Deals</span>
+        <p>Exclusive Deals</p>
         <img src={ArrowImg} alt="" />
       </div>
 
@@ -141,6 +142,22 @@ const Home = () => {
 
       <div className="card-container">
         {/* Repeat this block for each card */}
+        <div className="card">
+          <img src={Img4} alt="Image 1" />
+          <p>Image 1 Name</p>
+        </div>
+        <div className="card">
+          <img src={Img2} alt="Image 1" />
+          <p>Image 1 Name</p>
+        </div>
+        <div className="card">
+          <img src={Img2} alt="Image 1" />
+          <p>Image 1 Name</p>
+        </div>
+        <div className="card">
+          <img src={Img2} alt="Image 1" />
+          <p>Image 1 Name</p>
+        </div>
         <div className="card">
           <img src={Img2} alt="Image 1" />
           <p>Image 1 Name</p>
@@ -162,10 +179,22 @@ const Home = () => {
           <img src={Img3} alt="Image 1" />
           <p>Image 1 Name</p>
         </div>
+        <div className="local-card">
+          <img src={Img3} alt="Image 1" />
+          <p>Image 1 Name</p>
+        </div>
+        <div className="local-card">
+          <img src={Img3} alt="Image 1" />
+          <p>Image 1 Name</p>
+        </div>
+        <div className="local-card">
+          <img src={Img3} alt="Image 1" />
+          <p>Image 1 Name</p>
+        </div>
         {/* Repeat end */}
       </div>
 
-      <footer>
+      <footer className="">
         <div className="footer-content">
           <div className="footer-section">
             <h3>About</h3>
