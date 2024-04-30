@@ -6,7 +6,8 @@ const itemSchema = new mongoose.Schema({
     itemType: { type: String },
     rate: { type: Number, required: true },
     brand: { type: String },
-    description: { type: String }
+    description: { type: String },
+    img_path: { type: String } 
 });
 
 const Item = mongoose.model('Item', itemSchema);
