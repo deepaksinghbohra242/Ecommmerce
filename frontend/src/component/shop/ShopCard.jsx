@@ -34,7 +34,6 @@ const ShopCard = ({
           </p>
         </div>
       </div>
-      {/* Additional actions or buttons can be added here */}
     </div>
   );
 };

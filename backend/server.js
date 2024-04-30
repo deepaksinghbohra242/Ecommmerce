@@ -210,6 +210,31 @@ app.get('/uploads/:filename', (req, res) => {
     }
 });
 
+let wishlist = [
+    { id: 1, name: 'Product 1', price: '$20', rating: 4.5 },
+    { id: 2, name: 'Product 2', price: '$25', rating: 4.2 },
+    { id: 3, name: 'Product 3', price: '$30', rating: 4.8 }
+  ];
+  
+  // Get all wishlist items
+  app.get('/wishlist', (req, res) => {
+    res.json(wishlist);
+  });
+  
+  // Add an item to the wishlist
+  app.post('/', (req, res) => {
+    const newItem = req.body;
+    wishlist.push(newItem);
+    res.status(201).json(newItem);
+  });
+  
+  // Delete a wishlist item by ID
+  app.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    wishlist = wishlist.filter(item => item.id !== parseInt(id));
+    res.json({ message: 'Item deleted' });
+  });
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

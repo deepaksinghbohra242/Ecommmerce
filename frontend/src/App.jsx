@@ -8,11 +8,14 @@ import Item from './component/shop/Item';
 import Shop from './component/shop/Shop';
 import ItemForm from './component/insert/ItemForm';
 import ShopForm from './component/insert/ShopForm';
+import About from './component/about/About';
+import Navbar from './component/navbar/Navbar';
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path='/' element= {<Home />}/>
         <Route path='/login' element= {<Login />}/>
@@ -22,7 +25,7 @@ function App() {
         <Route path='/shop' element= {<Shop />} />
         <Route path='/itemform' element= {<ItemForm />} />
         <Route path='/shopForm' element= {<ShopForm />} />
-        
+        <Route path='/about' element= {<About />} />    
       </Routes>
       </BrowserRouter>
     </>
