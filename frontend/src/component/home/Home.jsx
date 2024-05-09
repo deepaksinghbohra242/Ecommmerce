@@ -76,27 +76,27 @@ const Home = () => {
         {/* Repeat this block for each card */}
         <div className="card">
           <img src={Img4} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Medicine</p>
         </div>
         <div className="card">
           <img src={Img5} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Home Needs</p>
         </div>
         <div className="card">
           <img src={Img6} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Books & Stationary</p>
         </div>
         <div className="card">
           <img src={Img7} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Apparel & lifestyle</p>
         </div>
         <div className="card">
           <img src={Img8} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Electronic & Accessories</p>
         </div>
         <div className="card">
           <img src={Img2} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Hygiene & wellness</p>
         </div>
         {/* Repeat end */}
       </div>
@@ -109,19 +109,19 @@ const Home = () => {
         {/* Repeat this block for each local card */}
         <div className="local-card">
           <img src={Img3} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Pulses</p>
         </div>
         <div className="local-card">
           <img src={Img9} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Handicrafts</p>
         </div>
         <div className="local-card">
           <img src={Img10} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Medicinal Herbs</p>
         </div>
         <div className="local-card">
           <img src={Img11} alt="Image 1" />
-          <p>Image 1 Name</p>
+          <p>Miscellanous</p>
         </div>
         {/* Repeat end */}
       </div>
@@ -130,9 +130,8 @@ const Home = () => {
         <div className="footer-content">
           <div className="footer-section">
             <h3>About</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p>  
+              मेरी खेती मेरी पहचान
             </p>
           </div>
           <div className="footer-section">
