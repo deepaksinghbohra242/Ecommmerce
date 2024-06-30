@@ -10,7 +10,6 @@ import ItemForm from './component/insert/ItemForm';
 import ShopForm from './component/insert/ShopForm';
 import About from './component/about/About';
 import Navbar from './component/navbar/Navbar';
-
 function App() {
   return (
     <>
@@ -28,6 +27,8 @@ function App() {
         <Route path='/about' element= {<About />} />    
       </Routes>
       </BrowserRouter>
+      
+      
     </>
   )
 }
